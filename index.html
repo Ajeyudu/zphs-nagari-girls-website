@@ -1,79 +1,129 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZPHS Nagari (Girls)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZPHS Nagari (Girls) School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #2196f3;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .banner img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+    }
+    section {
+      padding: 2rem;
+    }
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      background-color: #f1f1f1;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px #ccc;
+    }
+    .videos video {
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .gallery, .videos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
+  <header>
     <h1>ZPHS Nagari (Girls)</h1>
-    <p>Chittoor District, Andhra Pradesh</p>
+    <p>Empowering Girls Since 1962 – Chittoor, Andhra Pradesh</p>
   </header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#video">Video</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="banner" id="banner"></div>
 
-  <!-- Banner -->
-  <section class="banner">
-    <img src="images/banner.jpg" alt="School Banner">
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section">
-    <h2>About ZPHS Nagari (Girls)</h2>
+  <section>
+    <h2>About the School</h2>
     <p>
-      ZPHS NAGARI (GIRLS) is a girls-only government school located in the Nagari block of Chittoor district, Andhra Pradesh. 
+      ZPHS NAGARI (GIRLS) is a girls-only government school located in the Nagari block of Chittoor district, Andhra Pradesh.
       Established in 1962 and managed by the local body, the school has been a cornerstone of girls' education in the region for decades.
     </p>
     <p>
-      The school offers classes from Grade 6 to Grade 10 and follows English as the medium of instruction. It is situated in an urban area and does not include a pre-primary section. 
-      Despite infrastructure challenges, the school is easily accessible by all-weather roads, and its academic session begins every April.
+      The school offers classes from Grade 6 to Grade 10 and follows English as the medium of instruction. 
+      It is situated in an urban area and does not include a pre-primary section. Despite infrastructure challenges, 
+      the school is easily accessible by all-weather roads, and its academic session begins every April.
     </p>
     <p>
-      With a legacy of dedication and community trust, ZPHS Nagari (Girls) continues to nurture young minds and pave the way for a brighter future for girl students in the region.
+      With a legacy of dedication and community trust, ZPHS Nagari (Girls) continues to nurture young minds and pave the way 
+      for a brighter future for girl students in the region.
     </p>
-    <div class="cards">
-      <div class="card">👩‍🎓 Students: <strong>565</strong></div>
-      <div class="card">👩‍🏫 Teachers: <strong>28</strong></div>
-      <div class="card">🏫 Classrooms: <strong>17</strong></div>
-    </div>
   </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="section">
-    <h2>Gallery</h2>
-    <div class="gallery">
-      <img src="images/school1.jpg" alt="School Building">
-      <img src="images/classroom.jpg" alt="Classroom">
-    </div>
+  <div class="stats">
+    <div><strong>Students:</strong> 565</div>
+    <div><strong>Teachers:</strong> 28</div>
+    <div><strong>Classrooms:</strong> 17</div>
+  </div>
+
+  <section>
+    <h2>School Gallery</h2>
+    <div class="gallery" id="gallery"></div>
   </section>
 
-  <!-- Video Section -->
-  <section id="video" class="section">
-    <h2>School Introduction Video</h2>
-    <video width="100%" controls>
-      <source src="videos/intro.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
+  <section>
+    <h2>Videos</h2>
+    <div class="videos" id="videos"></div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>📍 Nagari, Chittoor District | 📞 9876543210 | ✉️ zphsnagari@ap.gov.in</p>
-  </footer>
+  <script>
+    fetch('gallery.json')
+      .then(res => res.json())
+      .then(data => {
+        // Banner image
+        if (data.images.length > 0) {
+          document.getElementById('banner').innerHTML =
+            `<img src="images/${data.images[0]}" alt="Banner">`;
+        }
+
+        // Image gallery
+        const gallery = document.getElementById('gallery');
+        data.images.slice(1).forEach(img => {
+          const image = document.createElement('img');
+          image.src = 'images/' + img;
+          image.alt = img;
+          gallery.appendChild(image);
+        });
+
+        // Video gallery
+        const videoDiv = document.getElementById('videos');
+        data.videos.forEach(videoFile => {
+          const video = document.createElement('video');
+          video.controls = true;
+          video.width = 400;
+          video.innerHTML = `<source src="videos/${videoFile}" type="video/mp4">Your browser does not support the video tag.`;
+          videoDiv.appendChild(video);
+        });
+      })
+      .catch(err => {
+        console.error('Error loading gallery:', err);
+      });
+  </script>
 
 </body>
 </html>
