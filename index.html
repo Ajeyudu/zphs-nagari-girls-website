@@ -1,48 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZPHS Nagari (Girls)</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial; margin: 0; padding: 0; }
-    header { background-color: #f44336; color: white; text-align: center; padding: 1em; }
-    section { padding: 20px; }
-    .gallery-item, .video-item {
-      margin: 10px; display: inline-block; text-align: center;
-    }
-    img, video {
-      width: 300px; height: auto; border-radius: 10px; box-shadow: 0 2px 6px #aaa;
-    }
-    h2 { color: #333; }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZPHS Nagari (Girls) School</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .banner {
+            width: 100%;
+            height: 300px;
+            background: url('images/banner.jpg') no-repeat center center/cover;
+            border-bottom: 5px solid #004080;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #004080;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: #004080;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-grid img, .gallery-grid video {
+            width: 100%;
+            height: auto;
+            border: 2px solid #004080;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid img:hover, .gallery-grid video:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <h1>ZPHS Nagari (Girls)</h1>
+        <p>Empowering Girls through Education since 1962</p>
+    </header>
+    <div class="banner"></div>
 
-<header>
-  <h1>ZPHS Nagari (Girls)</h1>
-</header>
+    <div class="content">
+        <div class="section">
+            <h2>About the School</h2>
+            <p>ZPHS Nagari (Girls) is a girls-only government school located in the Nagari block of Chittoor district, Andhra Pradesh. Established in 1962 and managed by the local body, the school has been a cornerstone of girls' education in the region for decades.</p>
+            <p>The school offers classes from Grade 6 to Grade 10 and follows English as the medium of instruction. It is situated in an urban area and does not include a pre-primary section. Despite infrastructure challenges, the school is easily accessible by all-weather roads, and its academic session begins every April.</p>
+            <p><strong>Total Students:</strong> 565<br><strong>Teachers:</strong> 28<br><strong>Classrooms:</strong> 17</p>
+        </div>
 
-<section>
-  <h2>About School</h2>
-  <p>
-    ZPHS NAGARI (GIRLS) is a girls-only government school located in the Nagari block of Chittoor district, Andhra Pradesh.
-    Established in 1962 and managed by the local body, the school has been a cornerstone of girls' education in the region for decades.
-    The school offers classes from Grade 6 to Grade 10 and follows English as the medium of instruction.
-    Total Students: 565 | Teachers: 28 | Classrooms: 17
-  </p>
-</section>
+        <div class="section">
+            <h2>Image Gallery</h2>
+            <div class="gallery-grid" id="imageGallery"></div>
+        </div>
 
-<section>
-  <h2>📸 School Gallery</h2>
-  <div id="image-gallery"></div>
-</section>
+        <div class="section">
+            <h2>School Videos</h2>
+            <div class="gallery-grid" id="videoGallery"></div>
+        </div>
+    </div>
 
-<section>
-  <h2>🎬 School Videos</h2>
-  <div id="video-gallery"></div>
-</section>
+    <footer>
+        &copy; 2025 ZPHS Nagari (Girls). Designed with ❤️ for education.
+    </footer>
 
-<script src="script.js"></script>
+    <script>
+        const imageGallery = document.getElementById("imageGallery");
+        const videoGallery = document.getElementById("videoGallery");
+
+        const imageList = [
+            "school1.jpg", "school2.jpg", "building.jpg", "students.jpg", "classroom.jpg"
+        ];
+
+        const videoList = [
+            "intro.mp4", "event1.mp4"
+        ];
+
+        imageList.forEach(img => {
+            const image = document.createElement("img");
+            image.src = `images/${img}`;
+            image.alt = img;
+            imageGallery.appendChild(image);
+        });
+
+        videoList.forEach(video => {
+            const vid = document.createElement("video");
+            vid.src = `videos/${video}`;
+            vid.controls = true;
+            videoGallery.appendChild(vid);
+        });
+    </script>
 </body>
 </html>
