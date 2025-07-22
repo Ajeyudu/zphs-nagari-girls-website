@@ -1,48 +1,92 @@
+@ -0,0 +1,91 @@
+/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 0;
+  background-color: #f2f6fc;
   color: #333;
+}
+
+.header {
+  background-color: #007acc;
+  color: white;
+  padding: 1rem;
   text-align: center;
 }
 
-header {
-  background-color: #0077cc;
+.navbar {
+  background-color: #004d80;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin: 0;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar a {
+  display: block;
+  padding: 14px 20px;
   color: white;
-  padding: 20px;
+  text-decoration: none;
 }
 
-header marquee {
-  color: #ffeb3b;
-  font-weight: bold;
+.navbar a:hover {
+  background-color: #006699;
+  border-radius: 4px;
 }
 
-.stats {
-  background-color: #e0f7fa;
-  padding: 15px;
-  font-size: 18px;
+.banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.section {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
 .gallery {
   display: flex;
-  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  flex-wrap: wrap;
 }
 
-.gallery img,
-.gallery video {
-  max-width: 300px;
-  width: 100%;
+.gallery img {
+  width: 300px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-footer {
-  background-color: #0077cc;
+.footer {
+  background-color: #007acc;
   color: white;
-  padding: 10px;
-  margin-top: 30px;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
 }
